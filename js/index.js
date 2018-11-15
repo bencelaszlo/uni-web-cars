@@ -12,8 +12,8 @@ function loadHead() {
 
 function loadHeader() {
     let body = $('body');
-    let header = $('<header>' +
-        '    <img id="header-image" src="images/header.jpg" alt="A car in 1980s\' style picture."/>' +
+    let header = $('<img id="header-image" src="images/header.jpg" alt="A car in 1980s\' style picture."/>' +
+        '<header>' +
         '    <button class="menu-item" onclick="carTab()">Cars</button>' +
         '    <button class="menu-item" onclick="manufacturerTab()">Manufacturers</button>' +
         '    <button class="menu-item" onclick="addCarTab()">Add car</button>' +
@@ -113,27 +113,25 @@ function addManufacturerTab() {
     resetPage();
     let body = $('body');
     let content = $('    <h1>Add Manufacturer</h1>' +
-        '    <form id="manufacturerForm" action="addManufacturers" method="post">' +
-        '        <table>' +
-        '            <tr>' +
-        '                <td>Name</td>' +
-        '                <td><input type="text" name="name"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Country</td>' +
-        '                <td><input type="text" name="country"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Founded</td>' +
-        '                <td><input type="string" name="founded"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td><input type="submit" value="Add Manufacturer"/></td>' +
-        '            </tr>' +
-        '        </table>' +
-        '    </form><div id=\'content\'></div>');
-
-    //loadManufacturerNames();
+        '<form id="manufacturerForm" action="addManufacturers" method="post">' +
+        '<table>' +
+        '<tr>' +
+        '<td>Name</td>' +
+        '<td><input type="text" name="name"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Country</td>' +
+        '<td><input type="text" name="country"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Founded</td>' +
+        '<td><input type="string" name="founded"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td><input type="submit" value="Add Manufacturer"/></td>' +
+        '</tr>' +
+        '</table>' +
+        '</form><div id=\'content\'></div>');
 
     body.append(content);
     loadFooter();
@@ -346,9 +344,5 @@ $(function() {
 });
 
 function manufacturer() {
-
-}
-
-function cars() {
 
 }
