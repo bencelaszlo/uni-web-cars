@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     text-decoration: overline underline;
     padding: 8px 0 0 8px;
-    margin: 16px auto 0 auto;
+    margin: 16px auto 4px auto;
     background-color: #96858F;
     border-radius: 10px;
     width: 80%;
