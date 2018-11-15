@@ -98,7 +98,7 @@ function addCarTab() {
         '                <td><input type="number" name="horsepower"/></td>' +
         '            </tr>' +
         '            <tr>' +
-        '                <td><input type="submit" value="Add Car"/></td>' +
+        '                <td colspan="2" class="send-button"><input type="submit" value="Add Car"/></td>' +
         '            </tr>' +
         '        </table>' +
         '    </form><div id=\'content\'></div>');
@@ -128,7 +128,7 @@ function addManufacturerTab() {
         '<td><input type="string" name="founded"/></td>' +
         '</tr>' +
         '<tr>' +
-        '<td><input type="submit" value="Add Manufacturer"/></td>' +
+        '<td colspan="2" class="send-button"><input type="submit" value="Add Manufacturer"/></td>' +
         '</tr>' +
         '</table>' +
         '</form><div id=\'content\'></div>');
@@ -344,5 +344,5 @@ $(function() {
 });
 
 function manufacturer() {
-
+    document.cookie = "name=" + author;
 }
