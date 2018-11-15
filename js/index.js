@@ -2,11 +2,11 @@ function loadHead() {
     let head = $('head');
     head.empty();
     let headContent = $('<meta charset="UTF-8">\n' +
-        '    <title>Cars</title>\n' +
-        '    <link rel="stylesheet" href="css/style.css" type="text/css"/>\n' +
-        '    <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>\n' +
-        '    <script type="application/javascript" src="js/index.js"></script>\n' +
-        '    <script type="application/javascript" src="js/manufacturer.js"></script>');
+        '<title>Cars</title>\n' +
+        '<link rel="stylesheet" href="css/style.css" type="text/css"/>\n' +
+        '<script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>\n' +
+        '<script type="application/javascript" src="js/index.js"></script>\n' +
+        '<script type="application/javascript" src="js/manufacturer.js"></script>');
     head.append(headContent);
 }
 
@@ -14,10 +14,10 @@ function loadHeader() {
     let body = $('body');
     let header = $('<img id="header-image" src="images/header.jpg" alt="A car in 1980s\' style picture."/>' +
         '<header>' +
-        '    <button class="menu-item" onclick="carTab()">Cars</button>' +
-        '    <button class="menu-item" onclick="manufacturerTab()">Manufacturers</button>' +
-        '    <button class="menu-item" onclick="addCarTab()">Add car</button>' +
-        '    <button class="menu-item" onclick="addManufacturerTab()">Add manufacturers</button>' +
+        '<button class="menu-item" onclick="carTab()">Cars</button>' +
+        '<button class="menu-item" onclick="manufacturerTab()">Manufacturers</button>' +
+        '<button class="menu-item" onclick="addCarTab()">Add car</button>' +
+        '<button class="menu-item" onclick="addManufacturerTab()">Add manufacturers</button>' +
         '</header>');
     body.append(header);
 }
@@ -25,7 +25,7 @@ function loadHeader() {
 function loadFooter() {
     let body = $('body');
     let footer = $('<footer>' +
-        '    2018 - <a href="https://bencelaszlo.github.io">Bence László</a>' +
+        '2018 - <a href="https://bencelaszlo.github.io">Bence László</a>' +
         '</footer>');
     body.append(footer);
 }
@@ -65,45 +65,44 @@ function manufacturerTab() {
 function addCarTab() {
     resetPage();
     let body = $('body');
-    let content = $('    <h1>Add Car</h1>' +
-        '    <form id="carForm" action="addCar" method="post">' +
-        '        <table>' +
-        '            <tr>' +
-        '                <td>Name (type)</td>' +
-        '                <td><input type="text" name="name"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Consumption (l / 100km)</td>' +
-        '                <td><input type="text" name="consumption"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Color</td>' +
-        '                <td><input type="text" name="color"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Manufacturer</td>' +
-        //'                <td><input type="text" name="manufacturer"/></td>' +
-                        '<td id="manufacturerNameRow"></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Year</td>' +
-        '                <td><input type="number" name="year"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Available</td>' +
-        '                <td><input type="number" name="available"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td>Horsepower</td>' +
-        '                <td><input type="number" name="horsepower"/></td>' +
-        '            </tr>' +
-        '            <tr>' +
-        '                <td colspan="2" class="send-button"><input type="submit" value="Add Car"/></td>' +
-        '            </tr>' +
-        '        </table>' +
-        '    </form><div id=\'content\'></div>');
+    let content = $('<h1>Add Car</h1>' +
+        '<form id="carForm" action="addCar" method="post">' +
+        '<table>' +
+        '<tr>' +
+        '<td>Name (type)</td>' +
+        '<td><input type="text" name="name"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Consumption (l / 100km)</td>' +
+        '<td><input type="text" name="consumption"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Color</td>' +
+        '<td><input type="text" name="color"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Manufacturer</td>' +
+         '<td id="manufacturerNameRow"></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Year</td>' +
+        '<td><input type="number" name="year"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Available</td>' +
+        '<td><input type="number" name="available"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Horsepower</td>' +
+        '<td><input type="number" name="horsepower"/></td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td colspan="2" class="send-button"><input type="submit" value="Add Car"/></td>' +
+        '</tr>' +
+        '</table>' +
+        '</form><div id=\'content\'></div>');
 
-    loadManufacturerNames()
+    loadManufacturerNames();
 
     body.append(content);
     loadFooter();
@@ -344,5 +343,5 @@ $(function() {
 });
 
 function manufacturer() {
-    document.cookie = "name=" + author;
+   // document.cookie = "name=" + author;
 }
