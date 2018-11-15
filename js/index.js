@@ -1,4 +1,17 @@
+function loadHead() {
+    let head = $('head');
+    head.empty();
+    let headContent = $('<meta charset="UTF-8">\n' +
+        '    <title>Cars</title>\n' +
+        '    <link rel="stylesheet" href="css/style.css" type="text/css"/>\n' +
+        '    <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>\n' +
+        '    <script type="application/javascript" src="js/index.js"></script>\n' +
+        '    <script type="application/javascript" src="js/manufacturer.js"></script>');
+    head.append(headContent);
+}
+
 function loadHeader() {
+
     let body = $('body');
     let header = $('<header>' +
         '    <img id="header-image" src="images/header.jpg" alt="A car in 1980s\' style picture."/>' +
@@ -13,18 +26,27 @@ function loadHeader() {
 function loadFooter() {
     let body = $('body');
     let footer = $('<footer>' +
-        '    2018 - <a href="https://bencelaszlo.github.io">Bence Lászó</a>' +
+        '    2018 - <a href="https://bencelaszlo.github.io">Bence László</a>' +
         '</footer>');
     body.append(footer);
 }
 
-function resetBody() {
+function resetPage() {
     $("body").empty();
+    loadHead();
+    loadHeader();
+}
+
+function boilerTab() {
+    resetPage();
+    let body = $('body');
+    let content = "<h1>Welcome!</h1><div id='content'><p>Our website gives you the most complete and most exciting information regarding to the automotive industry, shopping and all of this are free just now, just for You!</p></div>";
+    body.append(content);
+    loadFooter();
 }
 
 function carTab() {
-    resetBody();
-    loadHeader();
+    resetPage();
     let body = $('body');
     let content = "<h1>Cars</h1><div id='content'></div>";
     body.append(content);
@@ -33,8 +55,7 @@ function carTab() {
 }
 
 function manufacturerTab() {
-    resetBody();
-    loadHeader();
+    resetPage();
     let body = $('body');
     let content = $("<h1>Manufacturers</h1><div id='content'></div>");
     body.append(content);
@@ -43,8 +64,7 @@ function manufacturerTab() {
 }
 
 function addCarTab() {
-    resetBody();
-    loadHeader();
+    resetPage();
     let body = $('body');
     let content = $('    <h1>Add Car</h1>' +
         '    <form id="carForm" action="addCar" method="post">' +
@@ -87,11 +107,10 @@ function addCarTab() {
 }
 
 function addManufacturerTab() {
-    resetBody();
-    loadHeader();
+    resetPage();
     let body = $('body');
     let content = $('    <h1>Add Manufacturer</h1>' +
-        '    <form id="manufacturersForm" action="addManufacturers" method="post">' +
+        '    <form id="manufacturerForm" action="addManufacturers" method="post">' +
         '        <table>' +
         '            <tr>' +
         '                <td>Name</td>' +
@@ -103,7 +122,7 @@ function addManufacturerTab() {
         '            </tr>' +
         '            <tr>' +
         '                <td>Founded</td>' +
-        '                <td><input type="text" name="founded"/></td>' +
+        '                <td><input type="string" name="founded"/></td>' +
         '            </tr>' +
         '            <tr>' +
         '                <td><input type="submit" value="Add Manufacturer"/></td>' +
@@ -172,7 +191,10 @@ function loadManufacturers() {
             table.append(row); //Append row to the table.
         });
 
-        $("#content").append(table);
+        let contentDiv = $("#content");
+
+        contentDiv.empty();
+        contentDiv.append(table);
     });
 }
 
@@ -282,21 +304,21 @@ $(function() {
 });
 
 $(function() {
-   $('#manufacturersForm').on('submit', function(e) {
-       e.preventDefault();
+    $('#manufacturerForm').on('submit', function(e) {
+        e.preventDefault();
 
-       $.ajax({
-           type: "post",
-           url: "addManufacturers",
-           data: $('#manufacturersForm').serialize(),
-           success: function(data) {
-               loadManufacturers();
-           },
-           error: function() {
-               alert("Something went wrong.");
-           }
-       })
-   })
+        $.ajax({
+            type: "post",
+            url: 'addManufacturers',
+            data: $('#manufacturerForm').serialize(),
+            success: function (data) {
+                loadManufacturers();
+            },
+            error: function () {
+                alert("Something went wrong.");
+            }
+        })
+    })
 });
 
 function manufacturerNames () {}
