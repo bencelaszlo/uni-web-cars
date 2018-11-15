@@ -11,7 +11,6 @@ function loadHead() {
 }
 
 function loadHeader() {
-
     let body = $('body');
     let header = $('<header>' +
         '    <img id="header-image" src="images/header.jpg" alt="A car in 1980s\' style picture."/>' +
@@ -83,7 +82,8 @@ function addCarTab() {
         '            </tr>' +
         '            <tr>' +
         '                <td>Manufacturer</td>' +
-        '                <td><input type="text" name="manufacturer"/></td>' +
+        //'                <td><input type="text" name="manufacturer"/></td>' +
+                        '<td id="manufacturerNameRow"></td>' +
         '            </tr>' +
         '            <tr>' +
         '                <td>Year</td>' +
@@ -102,6 +102,9 @@ function addCarTab() {
         '            </tr>' +
         '        </table>' +
         '    </form><div id=\'content\'></div>');
+
+    loadManufacturerNames()
+
     body.append(content);
     loadFooter();
 }
@@ -129,6 +132,9 @@ function addManufacturerTab() {
         '            </tr>' +
         '        </table>' +
         '    </form><div id=\'content\'></div>');
+
+    //loadManufacturerNames();
+
     body.append(content);
     loadFooter();
 }
@@ -285,6 +291,24 @@ function loadCars() {
     })
 }
 
+function loadManufacturerNames() {
+    $.getJSON('manufacturerNames', function(data) {
+        let parent = $('#manufacturerNameRow');
+        let content = $('<select name="manufacturer">');
+
+        $.each(data, function(key, value) {
+            //Parsing JSON objects' fields.
+            let tempOption = $('<option value="' + value + '">' + value + '</option>');
+
+            content.append(tempOption);
+        });
+
+        content.append('</select>');
+
+        parent.append(content);
+    })
+}
+
 $(function() {
    $('#carForm').on('submit', function(e) {
        e.preventDefault();
@@ -320,8 +344,6 @@ $(function() {
         })
     })
 });
-
-function manufacturerNames () {}
 
 function manufacturer() {
 
