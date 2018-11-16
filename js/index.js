@@ -36,14 +36,6 @@ function resetPage() {
     loadHeader();
 }
 
-function boilerTab() {
-    resetPage();
-    let body = $('body');
-    let content = "<h1>Welcome!</h1><div id='content'><p>Our website gives you the most complete and most exciting information regarding to the automotive industry, shopping and all of this are free just now, just for You!</p></div>";
-    body.append(content);
-    loadFooter();
-}
-
 function carTab() {
     resetPage();
     let body = $('body');
@@ -124,7 +116,7 @@ function addManufacturerTab() {
         '</tr>' +
         '<tr>' +
         '<td>Founded</td>' +
-        '<td><input type="string" name="founded"/></td>' +
+        '<td><input type="date" name="founded"/></td>' +
         '</tr>' +
         '<tr>' +
         '<td colspan="2" class="send-button"><input type="submit" value="Add Manufacturer"/></td>' +
@@ -343,5 +335,5 @@ $(function() {
 });
 
 function manufacturer() {
-   // document.cookie = "name=" + author;
+   //document.cookie = "cars=" + {};
 }
