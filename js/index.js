@@ -1,12 +1,11 @@
 function loadHead() {
     let head = $('head');
     head.empty();
-    let headContent = $('<meta charset="UTF-8">\n' +
-        '<title>Cars</title>\n' +
-        '<link rel="stylesheet" href="css/style.css" type="text/css"/>\n' +
-        '<script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>\n' +
-        '<script type="application/javascript" src="js/index.js"></script>\n' +
-        '<script type="application/javascript" src="js/manufacturer.js"></script>');
+    let headContent = $('<meta charset="UTF-8">' +
+        '<title>Cars</title>' +
+        '<link rel="stylesheet" href="css/style.css" type="text/css"/>' +
+        '<script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>' +
+        '<script type="application/javascript" src="js/index.js"></script>');
     head.append(headContent);
 }
 
@@ -124,6 +123,9 @@ function addManufacturerTab() {
         '</table>' +
         '</form><div id=\'content\'></div>');
 
+    let cookieTable = $('<table id="cookieTable></table>');
+    body.append(cookieTable);
+
     body.append(content);
     loadFooter();
 }
@@ -142,7 +144,7 @@ function loadManufacturers() {
             let row = $('<tr></tr>');
 
             //Parsing JSON objects' fields.
-            let nameField = $('<td>' + value.name + '</td>');
+            let nameField = $('<td onclick="saveCookie(' + "'" + value.name + "'" + ')">' + value.name + '</td>');
             let foundedField = $('<td>' + value.founded + '</td>');
             let countryField = $('<td>' + value.country + '</td>');
 
@@ -334,6 +336,95 @@ $(function() {
     })
 });
 
-function manufacturer() {
-   //document.cookie = "cars=" + {};
+function saveCookie(manufacturer) {
+   document.cookie = "name" + "=" + manufacturer;
+
+   $.getJSON('manufacturer', function(data) {
+    let table = $('#cookieTable');
+    table.remove();
+
+    let cookieTable = $('<table id="cookieTable"></table>');
+    cookieTable.append('<h2>' + manufacturer + '</h2>'); //Append manufacturer name as a title of the new table.
+
+    cookieTable.append('<tr><th>Name</th><th>Consumption</th><th>Color</th><th>Manufacturer</th><th>Available</th><th>Year</th><th>Horsepower</th></tr>');
+    $("content").append(table);
+
+    let trParity = false;
+    let tdParity = false;
+
+    $.each(data, function(key, value) {
+        let row = $('<tr></tr>');
+        //Parsing JSON objects' fields.
+        let nameField = $('<td>' + value.name +  '</td>');
+        let consumptionField = $('<td>' + value.consumption +  '</td>');
+        let colorField = $('<td>' + value.color +  '</td>');
+        let manufacturerField = $('<td>' + value.manufacturer +  '</td>');
+        let availableField = $('<td>' + value.available +  '</td>');
+        let yearField = $('<td>' + value.year +  '</td>');
+        let horsepowerField = $('<td>' + value.horsepower +  '</td>');
+
+        if (trParity) {
+            row.addClass('tr-light');
+            trParity = false;
+
+            if (tdParity) {
+                nameField.addClass('td-mid-light');
+                consumptionField.addClass('td-light');
+                colorField.addClass('td-mid-light');
+                manufacturerField.addClass('td-light');
+                availableField.addClass('td-mid-light');
+                yearField.addClass('td-light');
+                horsepowerField.addClass('td-mid-light');
+                tdParity = false;
+            } else {
+                nameField.addClass('td-light');
+                consumptionField.addClass('td-mid-light');
+                colorField.addClass('td-light');
+                manufacturerField.addClass('td-mid-light');
+                availableField.addClass('td-light');
+                yearField.addClass('td-mid-light');
+                horsepowerField.addClass('td-light');
+                tdParity = true;
+            }
+        } else {
+            row.addClass('tr-dark');
+            trParity = true;
+
+            if (tdParity) {
+                nameField.addClass('td-mid-dark');
+                consumptionField.addClass('td-dark');
+                colorField.addClass('td-mid-dark');
+                manufacturerField.addClass('td-dark');
+                availableField.addClass('td-mid-dark');
+                yearField.addClass('td-dark');
+                horsepowerField.addClass('td-mid-dark');
+                tdParity = false;
+            } else {
+                nameField.addClass('td-dark');
+                consumptionField.addClass('td-mid-dark');
+                colorField.addClass('td-dark');
+                manufacturerField.addClass('td-mid-dark');
+                availableField.addClass('td-dark');
+                yearField.addClass('td-mid-dark');
+                horsepowerField.addClass('td-dark');
+                tdParity = true;
+            }
+        }
+
+        //Append fields to the row.
+        row.append(nameField);
+        row.append(consumptionField);
+        row.append(colorField);
+        row.append(manufacturerField);
+        row.append(availableField);
+        row.append(yearField);
+        row.append(horsepowerField);
+
+        cookieTable.append(row); //Append row to the table.
+    });
+
+    let contentDiv = $("#content");
+    contentDiv.append(cookieTable);
+    });
+
 }
