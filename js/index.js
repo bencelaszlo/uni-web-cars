@@ -49,6 +49,7 @@ function manufacturerTab() {
     let body = $('body');
     let content = $("<h1>Manufacturers</h1><div id='content'></div>");
     body.append(content);
+    loadHead();
     loadManufacturers();
     loadFooter();
 }
@@ -145,7 +146,18 @@ function loadManufacturers() {
 
             //Parsing JSON objects' fields.
             let nameField = $('<td onclick="saveCookie(' + "'" + value.name + "'" + ')">' + value.name + '</td>');
-            let foundedField = $('<td>' + value.founded + '</td>');
+
+            let rawFounded = new Date(value.founded);
+            let year = rawFounded.getFullYear();
+            let monthIndex = rawFounded.getMonth();
+            let day = rawFounded.getDate();
+
+            let months = [ "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December" ];
+
+            let formattedFounded = months[monthIndex] + " " + day + ", " + year;
+
+            let foundedField = $('<td>' + formattedFounded + '</td>');
             let countryField = $('<td>' + value.country + '</td>');
 
             if (trParity) {
